@@ -1,0 +1,45 @@
+{
+	"sap.app": {
+		"id": "c500adj_ui",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"c500adj_uiShow": {
+					"title": "c500adj_ui",
+					"icon": "sap-icon://share-2",
+					"semanticObject": "c500adj_ui",
+					"action": "show",
+					"deviceTypes": {
+						"desktop": true,
+						"tablet": true,
+						"phone": true
+					}
+				}
+			},
+			"outbounds": {}
+		}
+	},
+	"sap.ui5": {
+		"_version": "1.2.0",
+		"componentName": "c500adj_ui",
+		"rootView": {
+			"viewName": "c500adj_ui.Page",
+			"type": "XML",
+			"async": true
+		},
+		"dependencies": {
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		}
+	},
+	"sap.platform.cf": {},
+	"sap.platform.runtime": {
+		"componentProperties": {
+			"url": "/"
+		}
+	}
+}

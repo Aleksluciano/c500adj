@@ -1,0 +1,89 @@
+{
+	"roles": {
+		"Everyone": {
+			"_version": "1.0",
+			"identification": {
+				"id": "Everyone",
+				"namespace": "",
+				"entityType": "role"
+			},
+			"payload": {
+				"catalogs": [],
+				"groups": [{
+					"id": "adj_ui_GroupId"
+				}]
+			}
+		}
+	},
+	"applications": {
+
+		"c500adj_ui": {
+			"sap.app": {
+				"_version": "1.3.0",
+				"id": "c500adj_ui",
+				"title": "C500",
+				"i18n": "i18n/i18n.properties",
+				"tags": {
+					"keywords": []
+				},
+				"crossNavigation": {
+					"inbounds": {
+						"c500adj_uiShow": {
+							"semanticObject": "c500adj_ui",
+							"action": "show",
+							"deviceTypes": {
+								"desktop": true,
+								"tablet": true,
+								"phone": true
+							},
+							"signature": {
+								"parameters": {},
+								"additionalParameters": "allowed"
+							}
+						}
+					},
+					"outbounds": {}
+				}
+			},
+			"sap.ui": {
+				"_version": "1.3.0",
+				"technology": "UI5"
+			},
+			"sap.ui5": {
+				"componentName": "c500adj_ui",
+				"_version": "1.2.0"
+			},
+			"sap.platform.runtime": {
+				"componentProperties": {
+					"url": "c500_ui_dest"
+				}
+			}
+
+		}
+
+	},
+	"groups": {
+		"adj_ui_GroupId": {
+			"identification": {
+				"id": "adj_ui_GroupId",
+				"i18n": "i18n/i18n.properties",
+				"namespace": "",
+				"title": "Custom T14SS"
+			},
+			"payload": {
+				"tiles": [{
+					"id": "c500adj_ui_tile",
+					"title": "C500",
+					"subTitle": "Valor fornecido",
+					"icon": "sap-icon://share-2",
+					"appId": "c500adj_ui",
+					"target": {
+						"semanticObject": "c500adj_ui",
+						"action": "show",
+						"parameters": []
+					}
+				}]
+			}
+		}
+	}
+}

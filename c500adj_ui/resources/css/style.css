@@ -1,0 +1,12 @@
+.disabled input{
+ pointer-events: none;
+ color: transparent;
+ text-shadow: 0 0 0 gray;
+}
+
+
+.checkBoxMargin{
+		margin-left:1.5em;
+		margin-bottom:1.5em;
+}
+
