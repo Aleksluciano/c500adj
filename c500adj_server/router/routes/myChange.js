@@ -11,7 +11,7 @@ module.exports = () => {
 	var app = express.Router();
 
 	//HANA DB Client 
-	app.post("/", async(req, res) => {
+	app.post("/", async (req, res) => {
 
 		const {
 			company,
@@ -21,7 +21,7 @@ module.exports = () => {
 			simulation
 		} = req.body;
 		const period1 = period.slice(6) + period.slice(3, 5) + '01';
-		const newdate = new Date(period.slice(6), Number(period.slice(3, 5)) + 1, 0);
+		const newdate = new Date(period.slice(6), parseInt(period.slice(3, 5)), 0);
 		const period2 = period.slice(6) + period.slice(3, 5) + newdate.getDate().toString();
 
 
@@ -51,7 +51,7 @@ WHERE MANDT = ? AND NF_ID = ?`;
 
 		//SQL EXEC
 		try {
-	
+
 			let v_emp_fed_table = await client.exec(query_select_v_emp_fed, [company]);
 			let v_nf_doc_table = await client.exec(query_select_v_nf_doc, [v_emp_fed_table[0].MANDT_TDF, company, branch, branch2, period1, period2]);
 			if (simulation === true) {
@@ -68,7 +68,8 @@ WHERE MANDT = ? AND NF_ID = ?`;
 						FILIAL: v_nf_doc.FILIAL
 					}
 					item++;
-					resultAll.push({... {
+					resultAll.push({
+						... {
 							item
 						},
 						...update_d_nfdoc_cpl
@@ -91,7 +92,7 @@ WHERE MANDT = ? AND NF_ID = ?`;
 							const update_d_nfdoc_cpl = {
 								MANDT: v_nf_doc.MANDT,
 								NF_ID: v_nf_doc.NF_ID,
-							    NUM_DOC: v_nf_doc.NUM_DOC,
+								NUM_DOC: v_nf_doc.NUM_DOC,
 								VL_FORN: v_nf_doc.VL_TOTAL_DOCUMENTO,
 								VL_TOTAL_DOCUMENTO: v_nf_doc.VL_TOTAL_DOCUMENTO,
 								DT_E_S: v_nf_doc.DT_E_S,
@@ -99,7 +100,8 @@ WHERE MANDT = ? AND NF_ID = ?`;
 								FILIAL: v_nf_doc.FILIAL
 							}
 							item++;
-							resultAll.push({... {
+							resultAll.push({
+								... {
 									item
 								},
 								...update_d_nfdoc_cpl
@@ -119,7 +121,8 @@ WHERE MANDT = ? AND NF_ID = ?`;
 								FILIAL: v_nf_doc.FILIAL
 							}
 							item++;
-							resultAll.push({... {
+							resultAll.push({
+								... {
 									item
 								},
 								...new_d_nfdoc_cpl
@@ -128,7 +131,7 @@ WHERE MANDT = ? AND NF_ID = ?`;
 					}
 				}
 			}
-		
+
 
 			return res.type("application/json").status(200).send({
 				result: resultAll
